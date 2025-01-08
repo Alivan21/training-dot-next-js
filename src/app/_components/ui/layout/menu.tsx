@@ -21,4 +21,10 @@ export const navbarMenu = [
     icon: <UserOutlined />,
     permissions: [],
   },
+  {
+    key: '/borrowings',
+    label: <Link href="/borrowings">Borrowings</Link>,
+    icon: <TableOutlined />,
+    permissions: [],
+  },
 ];
