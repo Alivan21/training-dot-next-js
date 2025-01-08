@@ -2,7 +2,6 @@ import {
   DashboardOutlined,
   KeyOutlined,
   UserOutlined,
-  EyeOutlined,
   TableOutlined,
   BookOutlined,
 } from '@ant-design/icons';
@@ -22,9 +21,27 @@ export const navbarMenu = [
     permissions: [],
   },
   {
+    key: '/books',
+    label: <Link href="/books">Books</Link>,
+    icon: <BookOutlined />,
+    permissions: [],
+  },
+  {
+    key: '/authors',
+    label: <Link href="/authors">Authors</Link>,
+    icon: <UserOutlined />,
+    permissions: [],
+  },
+  {
+    key: '/categories',
+    label: <Link href="/categories">Category</Link>,
+    icon: <TableOutlined />,
+    permissions: [],
+  },
+  {
     key: '/borrowings',
     label: <Link href="/borrowings">Borrowings</Link>,
-    icon: <TableOutlined />,
+    icon: <KeyOutlined />,
     permissions: [],
   },
 ];
