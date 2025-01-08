@@ -68,7 +68,7 @@ export const updateBorrowings = async (
 };
 
 export const deleteBorrowings = async (
-  id: number
+  id: number | string
 ): Promise<TResponseData<TGetBorrowingsResponse>> => {
   const { data } = await axios.delete<TResponseData<TGetBorrowingsResponse>>(
     `/api/borrowings/${id}`
