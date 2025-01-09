@@ -28,7 +28,7 @@ const CreateAuthorPage = () => {
 
   const handleOnFinish = (data: AuthorFormData) =>
     createAuthorMutation.mutate(
-      { ...data },
+      { ...data, birthdate: data.birthdate || new Date() },
       {
         onSuccess: () => {
           message.success('Author berhasil dibuat');
