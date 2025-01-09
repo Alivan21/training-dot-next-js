@@ -20,3 +20,11 @@ export const loginByGoogle = async () => {
     redirect: true,
   });
 };
+
+export const loginByGithub = async () => {
+  return signIn('github', { redirect: true });
+};
+
+export const loginByGitlab = async () => {
+  return signIn('gitlab', { redirect: true });
+};

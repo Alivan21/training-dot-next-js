@@ -12,6 +12,12 @@ export const envServerSchemaObj = {
   NEXTAUTH_GOOGLE_ID: z.string().optional(),
   NEXTAUTH_GOOGLE_SECRET: z.string().optional(),
 
+  NEXTAUTH_GITHUB_ID: z.string().optional(),
+  NEXTAUTH_GITHUB_SECRET: z.string().optional(),
+
+  NEXTAUTH_GITLAB_ID: z.string().optional(),
+  NEXTAUTH_GITLAB_SECRET: z.string().optional(),
+
   SENTRY_ORG: z.string().optional(),
   SENTRY_PROJECT: z.string().optional(),
 
@@ -27,6 +33,12 @@ const envServerCollectionObj = {
 
   NEXTAUTH_GOOGLE_ID: process.env.NEXTAUTH_GOOGLE_ID,
   NEXTAUTH_GOOGLE_SECRET: process.env.NEXTAUTH_GOOGLE_SECRET,
+
+  NEXTAUTH_GITHUB_ID: process.env.NEXTAUTH_GITHUB_ID,
+  NEXTAUTH_GITHUB_SECRET: process.env.NEXTAUTH_GITHUB_SECRET,
+
+  NEXTAUTH_GITLAB_ID: process.env.NEXTAUTH_GITLAB_ID,
+  NEXTAUTH_GITLAB_SECRET: process.env.NEXTAUTH_GITLAB_SECRET,
 
   SENTRY_ORG: process.env.SENTRY_ORG,
   SENTRY_PROJECT: process.env.SENTRY_PROJECT,

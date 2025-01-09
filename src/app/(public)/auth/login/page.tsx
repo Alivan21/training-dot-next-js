@@ -1,12 +1,18 @@
 'use client';
 
-import { Checkbox, FormProps } from 'antd';
+import { Checkbox, Divider, FormProps } from 'antd';
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import { TLoginForm } from './_entities/schema';
 import { useLoginByCredentialsMutation } from './_hooks/use-login-by-credentials-mutation';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  GithubOutlined,
+  GitlabOutlined,
+  GoogleOutlined,
+  LockOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { useIsMobileScreen } from '@/utils';
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { navigateTo } from './_actions/redirect';
 import { useSearchParams } from 'next/navigation';
 
@@ -95,6 +101,29 @@ const LoginPage: React.FC = () => {
               Log in
             </Button>
           </Form.Item>
+
+          <Divider>Or continue with</Divider>
+
+          <Space
+            size="middle"
+            style={{ width: '100%', justifyContent: 'center' }}
+          >
+            <Button
+              icon={<GoogleOutlined />}
+              onClick={() => signIn('google')}
+              size="large"
+            />
+            <Button
+              icon={<GithubOutlined />}
+              onClick={() => signIn('github')}
+              size="large"
+            />
+            <Button
+              icon={<GitlabOutlined />}
+              onClick={() => signIn('gitlab')}
+              size="large"
+            />
+          </Space>
 
           <div
             style={{

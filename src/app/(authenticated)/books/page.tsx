@@ -1,3 +1,5 @@
+'use client';
+
 import { useFilter } from '@/app/_hooks/datatable/use-filter';
 import { useRouter } from 'next/navigation';
 import { useBooksQuery } from './_hooks/use-books-query';
@@ -100,7 +102,7 @@ const BooksPage = () => {
   ];
   return (
     <Page
-      title="Users"
+      title="Books"
       breadcrumbs={breadcrumbs}
       topActions={<TopAction />}
       noStyle

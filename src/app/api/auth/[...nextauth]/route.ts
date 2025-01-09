@@ -5,6 +5,8 @@ import Google from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { schema } from '@/app/(public)/auth/login/_entities/schema';
 import { signIn } from '@/api/auth/sign-in';
+import GitLab from 'next-auth/providers/gitlab';
+import Github from 'next-auth/providers/github';
 
 const handler = NextAuth({
   pages: {
@@ -17,6 +19,14 @@ const handler = NextAuth({
     Google({
       clientId: envServer.NEXTAUTH_GOOGLE_ID ?? '',
       clientSecret: envServer.NEXTAUTH_GOOGLE_SECRET ?? '',
+    }),
+    Github({
+      clientId: envServer.NEXTAUTH_GITHUB_ID ?? '',
+      clientSecret: envServer.NEXTAUTH_GITHUB_SECRET ?? '',
+    }),
+    GitLab({
+      clientId: envServer.NEXTAUTH_GITLAB_ID ?? '',
+      clientSecret: envServer.NEXTAUTH_GITLAB_SECRET ?? '',
     }),
     CredentialsProvider({
       id: 'login',
