@@ -1,3 +1,4 @@
+'use client';
 import { useParams } from 'next/navigation';
 import { useBookQuery } from './_hooks/use-book-query';
 import { Page, Section } from 'admiral';
