@@ -6,7 +6,7 @@ import { Page, Section } from 'admiral';
 import { Descriptions } from 'antd';
 import { formatToIndonesianDate } from '@/utils/format-date';
 
-export const DetailAuthorPage = () => {
+const DetailAuthorPage = () => {
   const params = useParams();
   const authorId = typeof params.id === 'string' ? params.id : '';
   const { data, isLoading } = useAuthorQuery(authorId);
@@ -45,3 +45,5 @@ export const DetailAuthorPage = () => {
     </Page>
   );
 };
+
+export default DetailAuthorPage;

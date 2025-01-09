@@ -1,3 +1,5 @@
+'use client';
+
 import { Page } from 'admiral';
 import { Col, message, Row } from 'antd';
 import { FormAuthor } from '../../_components/form-authors';
@@ -5,6 +7,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useAuthorQuery } from '../_hooks/use-author-query';
 import { useUpdateAuthorMutation } from './_hooks/use-update-author-mutation';
 import { TCreateAuthorRequest } from '@/api/author';
+import dayjs from 'dayjs';
 
 const UpdateAuthorPage = () => {
   const params = useParams();
@@ -55,6 +58,7 @@ const UpdateAuthorPage = () => {
               onFinish: handleOnFinish,
               initialValues: {
                 ...authorQuery.data?.data,
+                birthdate: dayjs(authorQuery.data?.data.birthdate),
               },
               disabled: authorQuery.isLoading,
             }}

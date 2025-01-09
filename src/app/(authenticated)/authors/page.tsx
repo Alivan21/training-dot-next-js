@@ -50,14 +50,14 @@ const AuthorsPage = () => {
     {
       dataIndex: 'name',
       key: 'name',
-      title: 'name',
+      title: 'Name',
       sorter: true,
       sortOrder: makeSortOrder(filters, 'name'),
     },
     {
       dataIndex: 'nationality',
       key: 'nationality',
-      title: 'nationality',
+      title: 'Nationality',
       sorter: true,
       sortOrder: makeSortOrder(filters, 'nationality'),
     },
