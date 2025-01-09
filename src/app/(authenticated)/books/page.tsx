@@ -21,6 +21,7 @@ const BooksPage = () => {
   const { filters, pagination, handleChange } = useFilter();
   const booksQuery = useBooksQuery({
     ...pagination,
+    isbn: filters.isbn,
     sort_by: filters.sort_by,
     order: filters.order?.toLowerCase(),
   });

@@ -21,7 +21,11 @@ const UpdateBookPage = () => {
 
   const handleOnFinish = (data: BookFormData) =>
     updateBookMutation.mutate(
-      { ...data, description: data.description || '' },
+      {
+        ...data,
+        description: data.description || '',
+        published_date: data.published_date?.toISOString(),
+      },
       {
         onSuccess: () => {
           router.push('/books');

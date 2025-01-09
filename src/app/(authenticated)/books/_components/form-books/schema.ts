@@ -1,10 +1,11 @@
+import dayjs from 'dayjs';
 import { z } from 'zod';
 
 export const BookFormSchema = z.object({
   title: z.string().min(1, 'Required'),
   author_ids: z.array(z.number()).min(1, 'Required'),
   isbn: z.string().min(1, 'Required'),
-  published_date: z.string().min(1, 'Required'),
+  published_date: z.instanceof(dayjs as any, { message: 'Invalid date' }),
   quantity: z.number({ required_error: 'Required' }),
   category_ids: z.array(z.number()).min(1, 'Required'),
   publisher_id: z.number().min(1, 'Required'),

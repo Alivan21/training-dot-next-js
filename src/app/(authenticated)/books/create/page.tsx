@@ -27,20 +27,24 @@ const CreateBookPage = () => {
 
   const handleOnFinish = (data: BookFormData) =>
     createBookMutation.mutate(
-      { ...data, description: data.description || '' },
+      {
+        ...data,
+        description: data.description || '',
+        published_date: data.published_date || new Date(),
+      },
       {
         onSuccess: () => {
           message.success('Book berhasil dibuat');
           router.push('/books');
         },
         onError: () => {
-          message.error('User gagal dibuat');
+          message.error('Book gagal dibuat');
         },
       }
     );
 
   return (
-    <Page title="Add User" breadcrumbs={breadcrumb}>
+    <Page title="Add Book" breadcrumbs={breadcrumb}>
       <Row>
         <Col span={12} style={{ margin: 'auto' }}>
           <FormBook

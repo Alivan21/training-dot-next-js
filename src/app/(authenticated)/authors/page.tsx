@@ -118,6 +118,6 @@ export default AuthorsPage;
 
 const TopAction = () => (
   <Link href="/authors/create">
-    <Button icon={<PlusCircleOutlined />}>Add User</Button>
+    <Button icon={<PlusCircleOutlined />}>Add Author</Button>
   </Link>
 );
