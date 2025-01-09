@@ -6,11 +6,15 @@ export const BookFormSchema = z.object({
   author_ids: z.array(z.number()).min(1, 'Required'),
   isbn: z.string().min(1, 'Required'),
   published_date: z.instanceof(dayjs as any, { message: 'Invalid date' }),
-  quantity: z.number({ required_error: 'Required' }),
+  quantity: z
+    .string({ required_error: 'Required' })
+    .min(1, { message: 'Required' }),
   category_ids: z.array(z.number()).min(1, 'Required'),
   publisher_id: z.number().min(1, 'Required'),
   description: z.string().optional(),
-  page_count: z.number({ required_error: 'Required' }),
+  page_count: z
+    .string({ required_error: 'Required' })
+    .min(1, { message: 'Required' }),
   language: z.string().min(1, 'Required'),
 });
 

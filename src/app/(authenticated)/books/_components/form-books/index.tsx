@@ -79,11 +79,12 @@ export const FormBook: FC<Props> = ({ formProps, error, loading }) => {
 
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Author" name="author_id" rules={[rule]}>
+          <Form.Item label="Author" name="author_ids" rules={[rule]}>
             <Select
               placeholder="Choose author"
               options={authorOptionQuery.data}
               loading={authorOptionQuery.isLoading}
+              mode="multiple"
             />
           </Form.Item>
         </Col>

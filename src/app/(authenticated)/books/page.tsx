@@ -75,7 +75,7 @@ const BooksPage = () => {
       render: (_, record) => {
         return (
           <Flex>
-            <Link href={`/users/${record.id}`}>
+            <Link href={`/books/${record.id}`}>
               <Button
                 type="link"
                 icon={<EyeOutlined style={{ color: 'green' }} />}
@@ -93,7 +93,7 @@ const BooksPage = () => {
                 });
               }}
             />
-            <Link href={`/users/${record.id}/update`}>
+            <Link href={`/books/${record.id}/update`}>
               <Button type="link" icon={<EditOutlined />} />
             </Link>
           </Flex>
