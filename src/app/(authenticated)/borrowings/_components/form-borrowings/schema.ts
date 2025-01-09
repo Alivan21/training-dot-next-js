@@ -8,3 +8,5 @@ export const BorrowingFromSchema = z.object({
   return_date: z.instanceof(dayjs as any, { message: 'Invalid date' }),
   status: z.string(),
 });
+
+export type BorrowingFormData = z.infer<typeof BorrowingFromSchema>;

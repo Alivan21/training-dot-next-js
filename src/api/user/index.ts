@@ -21,7 +21,7 @@ export type TGetUsersResponse = {
   }[];
 };
 export const getUsers = async (
-  params: TGetUsersParams
+  params?: TGetUsersParams
 ): Promise<TResponsePaginate<TGetUsersResponse>> => {
   const { data } = await axios.get<TResponsePaginate<TGetUsersResponse>>(
     '/api/users',

@@ -20,6 +20,11 @@ export const formatToIndonesianDate = (dateString: string): string => {
   ];
 
   const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    return dateString;
+  }
+
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();

@@ -55,7 +55,7 @@ export type TCreateBookRequest = {
 };
 
 export const getBooks = async (
-  params: TGetBooksParams
+  params?: TGetBooksParams
 ): Promise<TResponsePaginate<TGetBooksResponse>> => {
   const { data } = await axios.get<TResponsePaginate<TGetBooksResponse>>(
     '/api/books',

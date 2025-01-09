@@ -28,9 +28,9 @@ export type TGetBorrowingsResponse = {
 export type TCreateBorrowingRequest = {
   user_id: number;
   book_id: number;
-  borrowed_date: 'string';
-  return_date: 'string';
-  status: 'string';
+  borrowed_date: string;
+  return_date: string;
+  status: string;
 };
 
 export const getBorrowings = async (params?: TGetBorrowingsParams) => {
