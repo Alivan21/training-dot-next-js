@@ -46,7 +46,7 @@ export const FormUser: FC<Props> = ({ formProps, error, loading }) => {
         <Input type="password" placeholder="Tulis password anda" />
       </Form.Item>
       <Form.Item label="Membership Date" name="membership_date" rules={[rule]}>
-        <DatePicker placeholder="Tanggal Lahir" />
+        <DatePicker placeholder="Tanggal Member" style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item label="Status" name="status" rules={[rule]}>
         <Select
