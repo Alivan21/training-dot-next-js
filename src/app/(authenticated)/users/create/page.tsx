@@ -26,7 +26,8 @@ const CreateUserPage = () => {
 
   const createUserMutation = useCreateUserMutation();
 
-  const handleOnFinish = (data: UserFormData) =>
+  const handleOnFinish = (data: UserFormData) => {
+    console.log(data);
     createUserMutation.mutate(
       { ...data, membership_date: data.membership_date.format('YYYY-MM-DD') },
       {
@@ -39,6 +40,7 @@ const CreateUserPage = () => {
         },
       }
     );
+  };
 
   return (
     <Page title="Add User" breadcrumbs={breadcrumb}>

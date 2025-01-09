@@ -8,6 +8,7 @@ export const UserFormSchema = z.object({
   membership_date: z.instanceof(dayjs as any, { message: 'Invalid date' }),
   status: z.string(),
   borrowing_ids: z.array(z.number()),
+  phone_numbers: z.array(z.string()).optional(),
 });
 
 export type UserFormData = z.infer<typeof UserFormSchema>;

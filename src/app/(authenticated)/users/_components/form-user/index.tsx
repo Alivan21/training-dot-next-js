@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, DatePicker, Form, Input, Select } from 'antd';
+import { Button, DatePicker, Flex, Form, Input, Select, Space } from 'antd';
 import { FC } from 'react';
 import { FormProps } from 'antd/lib';
 import { UserFormSchema } from './schema';
@@ -9,6 +9,8 @@ import { createZodSync } from '@/utils/zod-sync';
 import { TResponseError } from '@/common/types/response';
 import { useBorrowingOptionQuery } from './use-borrowing-option-query';
 import { AxiosError } from 'axios';
+import { PlusOutlined } from '@ant-design/icons';
+import { MinusCircleOutlined } from '@ant-design/icons';
 
 type Props = {
   formProps: FormProps;
@@ -26,7 +28,14 @@ export const FormUser: FC<Props> = ({ formProps, error, loading }) => {
   const borrowingOptionQuery = useBorrowingOptionQuery();
 
   return (
-    <Form {...formProps} form={form} layout="vertical">
+    <Form
+      {...formProps}
+      form={form}
+      layout="vertical"
+      initialValues={{
+        phone_numbers: [''],
+      }}
+    >
       <Form.Item label="Name" name="name" rules={[rule]}>
         <Input placeholder="Fredrick" />
       </Form.Item>
@@ -54,6 +63,46 @@ export const FormUser: FC<Props> = ({ formProps, error, loading }) => {
           ]}
         />
       </Form.Item>
+      <Form.List name="phone_numbers">
+        {(fields, { add, remove }) => (
+          <>
+            {fields.map(({ key, name, ...restField }, index) => (
+              <Flex
+                style={{
+                  alignItems: 'center',
+                  marginBottom: '8px',
+                }}
+                key={key}
+              >
+                <Form.Item
+                  {...restField}
+                  name={[name]}
+                  rules={[rule]}
+                  label={name === 0 ? 'Phone Numbers' : ''}
+                  style={{ flex: 1, marginBottom: 0, width: '100%' }}
+                >
+                  <Input placeholder="Enter phone number" />
+                </Form.Item>
+                {index > 0 && (
+                  <Form.Item style={{ marginBottom: 0, marginLeft: 8 }}>
+                    <MinusCircleOutlined onClick={() => remove(name)} />
+                  </Form.Item>
+                )}
+              </Flex>
+            ))}
+            <Form.Item>
+              <Button
+                type="dashed"
+                onClick={() => add()}
+                block
+                icon={<PlusOutlined />}
+              >
+                Add Phone Number
+              </Button>
+            </Form.Item>
+          </>
+        )}
+      </Form.List>
       <Form.Item label="Borrowings" name="borrowing_ids" rules={[rule]}>
         <Select
           placeholder="Choose borrowings"

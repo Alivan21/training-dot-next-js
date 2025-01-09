@@ -33,7 +33,10 @@ export type TGetBooksResponse = {
     }[];
   }[];
   description: string;
-  publisher: {};
+  publisher: {
+    name: string;
+    id: string;
+  };
   page_count: number;
   language: string;
 };
@@ -91,7 +94,7 @@ export const updateBook = async (
   return data;
 };
 
-export const deleteBook = async (id: string) => {
+export const deleteBook = async (id: string | number) => {
   const { data } = await axios.delete(`/api/books/${id}`);
   return data;
 };
