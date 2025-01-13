@@ -42,12 +42,12 @@ export const FormBook: FC<Props> = ({ formProps, error, loading }) => {
     <Form {...formProps} form={form} layout="vertical">
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Title" name="title" rules={[rule]}>
+          <Form.Item required label="Title" name="title" rules={[rule]}>
             <Input placeholder="Fredrick" />
           </Form.Item>
         </Col>
         <Col sm={24} lg={12}>
-          <Form.Item label="ISBN" name="isbn" rules={[rule]}>
+          <Form.Item required label="ISBN" name="isbn" rules={[rule]}>
             <Input type="text" placeholder="isbn" />
           </Form.Item>
         </Col>
@@ -55,7 +55,7 @@ export const FormBook: FC<Props> = ({ formProps, error, loading }) => {
 
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Quantity" name="quantity" rules={[rule]}>
+          <Form.Item required label="Quantity" name="quantity" rules={[rule]}>
             <Input type="number" placeholder="0" />
           </Form.Item>
         </Col>
@@ -79,7 +79,7 @@ export const FormBook: FC<Props> = ({ formProps, error, loading }) => {
 
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Author" name="author_ids" rules={[rule]}>
+          <Form.Item required label="Author" name="author_ids" rules={[rule]}>
             <Select
               placeholder="Choose author"
               options={authorOptionQuery.data}
@@ -89,7 +89,12 @@ export const FormBook: FC<Props> = ({ formProps, error, loading }) => {
           </Form.Item>
         </Col>
         <Col sm={24} lg={12}>
-          <Form.Item label="Publisher" name="publisher_id" rules={[rule]}>
+          <Form.Item
+            required
+            label="Publisher"
+            name="publisher_id"
+            rules={[rule]}
+          >
             <Select
               placeholder="Choose publisher"
               options={publisherOptionQuery.data}
@@ -99,7 +104,7 @@ export const FormBook: FC<Props> = ({ formProps, error, loading }) => {
         </Col>
       </Row>
 
-      <Form.Item label="Kategori" name="category_ids" rules={[rule]}>
+      <Form.Item required label="Kategori" name="category_ids" rules={[rule]}>
         <Select
           placeholder="Choose category"
           options={categoryOptionQuery.data}
@@ -110,12 +115,17 @@ export const FormBook: FC<Props> = ({ formProps, error, loading }) => {
 
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Total Halaman" name="page_count" rules={[rule]}>
+          <Form.Item
+            required
+            label="Total Halaman"
+            name="page_count"
+            rules={[rule]}
+          >
             <Input type="number" placeholder="0" />
           </Form.Item>
         </Col>
         <Col sm={24} lg={12}>
-          <Form.Item label="Bahasa" name="language" rules={[rule]}>
+          <Form.Item required label="Bahasa" name="language" rules={[rule]}>
             <Input type="text" placeholder="Indonesia" />
           </Form.Item>
         </Col>

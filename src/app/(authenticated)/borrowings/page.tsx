@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Page } from 'admiral';
 import Datatable from 'admiral/table/datatable';
-import { Button, Flex, message } from 'antd';
+import { Button, DatePicker, Flex, Select, message } from 'antd';
 import Link from 'next/link';
 import { useBorrowingsQuery } from './_hooks/use-borrowings-query';
 import { ColumnsType } from 'antd/es/table';
@@ -18,14 +18,26 @@ import { TGetBorrowingsResponse } from '@/api/borrowings';
 import { formatToIndonesianDate } from '@/utils/format-date';
 import { useRouter } from 'next/navigation';
 import { useDeleteBorrowingMutation } from './_hooks/use-delete-borrowing-mutation';
+import { SortAscendingOutlined } from '@ant-design/icons';
+import { TFilterItem } from 'admiral/table/filter-collection/factory';
+import dayjs from 'dayjs';
 
 const BorrowingsPage = () => {
   const router = useRouter();
-  const { filters, pagination, handleChange } = useFilter();
+  const { filters, pagination, handleChange, setFilters } = useFilter();
+
+  const dateRange = filters.date_range
+    ? Array.isArray(filters.date_range)
+      ? filters.date_range
+      : JSON.parse(filters.date_range)
+    : undefined;
+
   const borrowingQuery = useBorrowingsQuery({
     ...pagination,
+    ...filters,
     sort_by: filters.sort_by,
     order: filters.order?.toLowerCase(),
+    status: filters.status,
   });
   const deleteBorrowingMutation = useDeleteBorrowingMutation();
 
@@ -112,6 +124,30 @@ const BorrowingsPage = () => {
     },
   ];
 
+  const filterComponents: TFilterItem[] = [
+    {
+      name: 'group',
+      label: 'Filter',
+      type: 'Group',
+      icon: <SortAscendingOutlined />,
+      cols: 2,
+      filters: [
+        {
+          name: 'status',
+          label: 'Status',
+          type: 'Select',
+          placeholder: 'Filter by Status',
+          value: filters.status,
+          options: [
+            { value: 'Borrowed', label: 'Borrowed' },
+            { value: 'Returned', label: 'Returned' },
+            { value: 'Overdue', label: 'Overdue' },
+          ],
+        },
+      ],
+    },
+  ];
+
   return (
     <Page
       title="Borrowings"
@@ -127,6 +163,7 @@ const BorrowingsPage = () => {
         source={makeSource(borrowingQuery.data)}
         columns={columns}
         search={filters.search}
+        filterComponents={filterComponents}
       />
     </Page>
   );

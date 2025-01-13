@@ -28,7 +28,10 @@ const CreateCategoryPage = () => {
 
   const handleOnFinish = (data: CategoryFormData) =>
     createCategoryMutation.mutate(
-      { ...data },
+      {
+        ...data,
+        subcategory_ids: [],
+      },
       {
         onSuccess: () => {
           message.success('Author berhasil dibuat');

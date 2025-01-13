@@ -30,7 +30,7 @@ export const FormBorrowing: FC<Props> = ({ formProps, error, loading }) => {
     <Form {...formProps} form={form} layout="vertical">
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="User" name="user_id" rules={[rule]}>
+          <Form.Item required label="User" name="user_id" rules={[rule]}>
             <Select
               placeholder="Select user"
               options={userOptionQuery.data}
@@ -39,7 +39,7 @@ export const FormBorrowing: FC<Props> = ({ formProps, error, loading }) => {
           </Form.Item>
         </Col>
         <Col sm={24} lg={12}>
-          <Form.Item label="Book" name="book_id" rules={[rule]}>
+          <Form.Item required label="Book" name="book_id" rules={[rule]}>
             <Select
               placeholder="Select book"
               options={bookOptionQuery.data}
@@ -51,7 +51,12 @@ export const FormBorrowing: FC<Props> = ({ formProps, error, loading }) => {
 
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Borrowed Date" name="borrowed_date" rules={[rule]}>
+          <Form.Item
+            required
+            label="Borrowed Date"
+            name="borrowed_date"
+            rules={[rule]}
+          >
             <DatePicker
               placeholder="Select borrow date"
               style={{ width: '100%' }}
@@ -59,7 +64,12 @@ export const FormBorrowing: FC<Props> = ({ formProps, error, loading }) => {
           </Form.Item>
         </Col>
         <Col sm={24} lg={12}>
-          <Form.Item label="Return Date" name="return_date" rules={[rule]}>
+          <Form.Item
+            required
+            label="Return Date"
+            name="return_date"
+            rules={[rule]}
+          >
             <DatePicker
               placeholder="Select return date"
               style={{ width: '100%' }}
@@ -68,7 +78,7 @@ export const FormBorrowing: FC<Props> = ({ formProps, error, loading }) => {
         </Col>
       </Row>
 
-      <Form.Item label="Status" name="status" rules={[rule]}>
+      <Form.Item required label="Status" name="status" rules={[rule]}>
         <Select
           placeholder="Select status"
           options={[

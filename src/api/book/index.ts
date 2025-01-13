@@ -46,11 +46,11 @@ export type TCreateBookRequest = {
   author_ids: number[];
   isbn: string;
   published_date: string;
-  quantity: string;
+  quantity: string | number;
   category_ids: number[];
   description: string;
   publisher_id: number;
-  page_count: string;
+  page_count: string | number;
   language: string;
 };
 

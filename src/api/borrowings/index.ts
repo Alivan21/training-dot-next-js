@@ -6,6 +6,11 @@ export type TGetBorrowingsParams = {
   sort_by?: string;
   order?: string;
   search?: string;
+  status?: string;
+  user_id?: string;
+  book_id?: string;
+  borrowed_date?: string;
+  return_date?: string;
 };
 
 export type TGetBorrowingsResponse = {

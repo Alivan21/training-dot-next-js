@@ -20,13 +20,13 @@ export const FormCategory: FC<Props> = ({ formProps, error, loading }) => {
   const [form] = Form.useForm();
   useFormErrorHandling(form, error);
 
-  const categoriesOptionQuery = useCategoryOptionQuery();
+  const subcategories = formProps.initialValues?.subcategories || [];
 
   return (
     <Form {...formProps} form={form} layout="vertical">
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Name" name="name" rules={[rule]}>
+          <Form.Item required label="Name" name="name" rules={[rule]}>
             <Input placeholder="Category name" />
           </Form.Item>
         </Col>
@@ -41,16 +41,24 @@ export const FormCategory: FC<Props> = ({ formProps, error, loading }) => {
         </Col>
       </Row>
 
-      <Form.Item label="Description" name="description" rules={[rule]}>
+      <Form.Item required label="Description" name="description" rules={[rule]}>
         <TextArea rows={4} placeholder="Category description" />
       </Form.Item>
 
-      <Form.Item label="Subcategories" name="subcategory_ids" rules={[rule]}>
+      <Form.Item label="Subcategories" name="subcategories" rules={[rule]}>
         <Select
           placeholder="Choose subcategories"
-          options={categoriesOptionQuery.data}
-          loading={categoriesOptionQuery.isLoading}
           mode="multiple"
+          fieldNames={{ label: 'name', value: 'id' }}
+          optionFilterProp={'name'}
+          optionLabelProp={'name'}
+          showSearch={true}
+          options={subcategories.map(
+            (subcategory: { id: string | number; name: string }) => ({
+              label: subcategory.name,
+              value: subcategory.id,
+            })
+          )}
         />
       </Form.Item>
 

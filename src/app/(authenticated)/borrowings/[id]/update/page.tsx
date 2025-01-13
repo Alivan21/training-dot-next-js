@@ -48,6 +48,8 @@ const UpdateBorrowingPage = () => {
     },
   ];
 
+  console.log(borrowingQuery.data);
+
   return (
     <Page title="Update Borrowing" breadcrumbs={breadcrumb}>
       <Row>

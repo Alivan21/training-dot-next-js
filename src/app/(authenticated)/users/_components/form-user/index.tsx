@@ -33,22 +33,27 @@ export const FormUser: FC<Props> = ({ formProps, error, loading }) => {
       form={form}
       layout="vertical"
       initialValues={{
-        phone_numbers: [''],
+        phone_numbers: [],
       }}
     >
-      <Form.Item label="Name" name="name" rules={[rule]}>
+      <Form.Item required label="Name" name="name" rules={[rule]}>
         <Input placeholder="Fredrick" />
       </Form.Item>
-      <Form.Item label="email" name="email" rules={[rule]}>
+      <Form.Item required label="Email" name="email" rules={[rule]}>
         <Input type="email" placeholder="johndoe@gmail.com" />
       </Form.Item>
-      <Form.Item label="Password" name="password" rules={[rule]}>
+      <Form.Item required label="Password" name="password" rules={[rule]}>
         <Input type="password" placeholder="Tulis password anda" />
       </Form.Item>
-      <Form.Item label="Membership Date" name="membership_date" rules={[rule]}>
+      <Form.Item
+        required
+        label="Membership Date"
+        name="membership_date"
+        rules={[rule]}
+      >
         <DatePicker placeholder="Tanggal Member" style={{ width: '100%' }} />
       </Form.Item>
-      <Form.Item label="Status" name="status" rules={[rule]}>
+      <Form.Item required label="Status" name="status" rules={[rule]}>
         <Select
           placeholder="Choose Status"
           options={[

@@ -26,12 +26,17 @@ export const FormAuthor: FC<Props> = ({ formProps, error, loading }) => {
     <Form {...formProps} form={form} layout="vertical">
       <Row gutter={16}>
         <Col sm={24} lg={12}>
-          <Form.Item label="Name" name="name" rules={[rule]}>
+          <Form.Item required label="Name" name="name" rules={[rule]}>
             <Input placeholder="Author's name" />
           </Form.Item>
         </Col>
         <Col sm={24} lg={12}>
-          <Form.Item label="Birth Date" name="birthdate" rules={[rule]}>
+          <Form.Item
+            required
+            label="Birth Date"
+            name="birthdate"
+            rules={[rule]}
+          >
             <DatePicker
               placeholder="Select birth date"
               style={{ width: '100%' }}
@@ -40,11 +45,11 @@ export const FormAuthor: FC<Props> = ({ formProps, error, loading }) => {
         </Col>
       </Row>
 
-      <Form.Item label="Biography" name="biography" rules={[rule]}>
+      <Form.Item required label="Biography" name="biography" rules={[rule]}>
         <TextArea rows={4} placeholder="Author's biography" />
       </Form.Item>
 
-      <Form.Item label="Nationality" name="nationality" rules={[rule]}>
+      <Form.Item required label="Nationality" name="nationality" rules={[rule]}>
         <Input placeholder="Author's nationality" />
       </Form.Item>
 

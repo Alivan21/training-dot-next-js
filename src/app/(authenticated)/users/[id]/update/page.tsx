@@ -58,8 +58,11 @@ const UpdateUserPage = () => {
             formProps={{
               onFinish: handleOnFinish,
               initialValues: {
-                ...userQuery.data?.data,
+                fullname: userQuery.data?.data.name,
+                email: userQuery.data?.data.email,
+                password: userQuery.data?.data.password,
                 membership_date: dayjs(userQuery.data?.data.membership_date),
+                status: userQuery.data?.data.status,
                 borrowing_ids: userQuery.data?.data.borrowings.map(
                   (borrowing) => borrowing.id
                 ),

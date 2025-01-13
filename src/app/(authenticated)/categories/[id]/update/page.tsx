@@ -19,15 +19,20 @@ const UpdateCategoryPage = () => {
   const updateCategoryMutation = useUpdateCategoryMutation(categoryId);
 
   const handleOnFinish = (data: TCreateCategoryRequest) =>
-    updateCategoryMutation.mutate(data, {
-      onSuccess: () => {
-        router.push('/categories');
-        message.success('Category berhasil diupdate');
+    updateCategoryMutation.mutate(
+      {
+        ...data,
       },
-      onError: () => {
-        message.error('Category gagal diupdate');
-      },
-    });
+      {
+        onSuccess: () => {
+          router.push('/categories');
+          message.success('Category berhasil diupdate');
+        },
+        onError: () => {
+          message.error('Category gagal diupdate');
+        },
+      }
+    );
 
   const breadcrumb = [
     {
@@ -47,6 +52,7 @@ const UpdateCategoryPage = () => {
       path: '#',
     },
   ];
+
   return (
     <Page title="Update Category" breadcrumbs={breadcrumb}>
       <Row>
