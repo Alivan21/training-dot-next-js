@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Page } from 'admiral';
 import Datatable from 'admiral/table/datatable';
-import { Button, DatePicker, Flex, Select, message } from 'antd';
+import { Button, DatePicker, Flex, message } from 'antd';
 import Link from 'next/link';
 import { useBorrowingsQuery } from './_hooks/use-borrowings-query';
 import { ColumnsType } from 'antd/es/table';
@@ -18,19 +18,14 @@ import { TGetBorrowingsResponse } from '@/api/borrowings';
 import { formatToIndonesianDate } from '@/utils/format-date';
 import { useRouter } from 'next/navigation';
 import { useDeleteBorrowingMutation } from './_hooks/use-delete-borrowing-mutation';
-import { SortAscendingOutlined } from '@ant-design/icons';
 import { TFilterItem } from 'admiral/table/filter-collection/factory';
+import { useBookOptionQuery } from './_components/form-borrowings/use-book-option-query';
+import { useUserOptionQuery } from './_components/form-borrowings/use-user-option-query';
 import dayjs from 'dayjs';
 
 const BorrowingsPage = () => {
   const router = useRouter();
-  const { filters, pagination, handleChange, setFilters } = useFilter();
-
-  const dateRange = filters.date_range
-    ? Array.isArray(filters.date_range)
-      ? filters.date_range
-      : JSON.parse(filters.date_range)
-    : undefined;
+  const { filters, pagination, handleChange } = useFilter();
 
   const borrowingQuery = useBorrowingsQuery({
     ...pagination,
@@ -40,6 +35,9 @@ const BorrowingsPage = () => {
     status: filters.status,
   });
   const deleteBorrowingMutation = useDeleteBorrowingMutation();
+
+  const bookOptionQuery = useBookOptionQuery();
+  const userOptionQuery = useUserOptionQuery();
 
   const breadcrumbs = [
     {
@@ -109,7 +107,7 @@ const BorrowingsPage = () => {
               onClick={() => {
                 deleteBorrowingMutation.mutate(record.id, {
                   onSuccess: () => {
-                    message.success('User berhasil dihapus');
+                    message.success('Peminjaman berhasil dihapus');
                     router.refresh();
                   },
                 });
@@ -126,25 +124,64 @@ const BorrowingsPage = () => {
 
   const filterComponents: TFilterItem[] = [
     {
-      name: 'group',
-      label: 'Filter',
-      type: 'Group',
-      icon: <SortAscendingOutlined />,
-      cols: 2,
-      filters: [
-        {
-          name: 'status',
-          label: 'Status',
-          type: 'Select',
-          placeholder: 'Filter by Status',
-          value: filters.status,
-          options: [
-            { value: 'Borrowed', label: 'Borrowed' },
-            { value: 'Returned', label: 'Returned' },
-            { value: 'Overdue', label: 'Overdue' },
-          ],
-        },
+      name: 'user_id',
+      label: 'User',
+      type: 'Select',
+      placeholder: 'Filter by User',
+      value: filters.user_id,
+      options: userOptionQuery.data,
+    },
+    {
+      name: 'book_id',
+      label: 'Book',
+      type: 'Select',
+      placeholder: 'Filter by book',
+      value: filters.book_id,
+      options: bookOptionQuery.data,
+    },
+    {
+      name: 'status',
+      label: 'Status',
+      type: 'Select',
+      placeholder: 'Filter by Status',
+      value: filters.status,
+      options: [
+        { value: 'Borrowed', label: 'Borrowed' },
+        { value: 'Returned', label: 'Returned' },
+        { value: 'Overdue', label: 'Overdue' },
       ],
+    },
+    {
+      name: 'borrowed_date',
+      label: 'Tanggal Peminjaman',
+      placeholder: 'Tanggal Peminjaman',
+      value: filters.borrowed_date,
+      render: (props: any) => (
+        <DatePicker
+          {...props}
+          value={props.value ? dayjs(props.value) : undefined}
+          format="YYYY-MM-DD"
+          onChange={(date) => {
+            props.onChange(date ? dayjs(date).format('YYYY-MM-DD') : undefined);
+          }}
+        />
+      ),
+    },
+    {
+      name: 'return_date',
+      label: 'Tanggal Pengembalian',
+      placeholder: 'Tanggal Pengembalian',
+      value: filters.return_date,
+      render: (props: any) => (
+        <DatePicker
+          {...props}
+          value={props.value ? dayjs(props.value) : undefined}
+          format="YYYY-MM-DD"
+          onChange={(date) => {
+            props.onChange(date ? dayjs(date).format('YYYY-MM-DD') : undefined);
+          }}
+        />
+      ),
     },
   ];
 

@@ -26,8 +26,8 @@ const UpdateBookPage = () => {
         ...data,
         description: data.description || '',
         published_date: data.published_date?.toISOString(),
-        quantity: String(data.quantity),
-        page_count: String(data.page_count),
+        quantity: data.quantity,
+        page_count: data.page_count,
       },
       {
         onSuccess: () => {

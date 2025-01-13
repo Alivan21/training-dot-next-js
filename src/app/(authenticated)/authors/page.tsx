@@ -80,7 +80,7 @@ const AuthorsPage = () => {
               onClick={() => {
                 deleteAuthorMutation.mutate(record.id, {
                   onSuccess: () => {
-                    message.success('User berhasil dihapus');
+                    message.success('Author berhasil dihapus');
                     router.refresh();
                   },
                 });

@@ -87,7 +87,7 @@ const BooksPage = () => {
               onClick={() => {
                 deleteBookMutation.mutate(record.id, {
                   onSuccess: () => {
-                    message.success('User berhasil dihapus');
+                    message.success('Buku berhasil dihapus');
                     router.refresh();
                   },
                 });

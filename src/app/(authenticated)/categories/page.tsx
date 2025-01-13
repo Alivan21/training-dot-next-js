@@ -78,7 +78,7 @@ const CategoriesPage = () => {
               onClick={() => {
                 deleteCategoryMutation.mutate(record.id, {
                   onSuccess: () => {
-                    message.success('User berhasil dihapus');
+                    message.success('Kategori berhasil dihapus');
                     router.refresh();
                   },
                 });
