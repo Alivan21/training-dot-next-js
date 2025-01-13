@@ -30,11 +30,11 @@ const CreateCategoryPage = () => {
     createCategoryMutation.mutate(
       {
         ...data,
-        subcategory_ids: [],
+        subcategory_ids: data.subcategories ?? [],
       },
       {
         onSuccess: () => {
-          message.success('Author berhasil dibuat');
+          message.success('Category created successfully');
           router.push('/authors');
         },
         onError: () => {
