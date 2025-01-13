@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useAuthorQuery } from './_hooks/use-author-query';
 import { Page, Section } from 'admiral';
-import { Descriptions } from 'antd';
+import Descriptions from 'admiral/descriptions';
 import { formatToIndonesianDate } from '@/utils/format-date';
 
 const DetailAuthorPage = () => {

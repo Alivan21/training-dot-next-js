@@ -2,7 +2,8 @@
 import { useParams } from 'next/navigation';
 import { useBookQuery } from './_hooks/use-book-query';
 import { Page, Section } from 'admiral';
-import { Col, Descriptions, Row, Tag } from 'antd';
+import Descriptions from 'admiral/descriptions';
+import { Col, Row, Tag } from 'antd';
 import { formatToIndonesianDate } from '@/utils/format-date';
 
 const DetailBookPage = () => {

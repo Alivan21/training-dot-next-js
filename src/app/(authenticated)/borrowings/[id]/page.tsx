@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { Page, Section } from 'admiral';
-import { Descriptions } from 'antd';
+import Descriptions from 'admiral/descriptions';
 import { useBorrowingQuery } from './_hooks/use-borrowing-query';
 import { formatToIndonesianDate } from '@/utils/format-date';
 
