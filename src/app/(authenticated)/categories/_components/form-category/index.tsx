@@ -20,7 +20,8 @@ export const FormCategory: FC<Props> = ({ formProps, error, loading }) => {
   const [form] = Form.useForm();
   useFormErrorHandling(form, error);
 
-  const subcategories = formProps.initialValues?.subcategories || [];
+  const categoryOptionQuery = useCategoryOptionQuery();
+  console.log(categoryOptionQuery.data);
 
   return (
     <Form {...formProps} form={form} layout="vertical">
@@ -49,16 +50,8 @@ export const FormCategory: FC<Props> = ({ formProps, error, loading }) => {
         <Select
           placeholder="Choose subcategories"
           mode="multiple"
-          fieldNames={{ label: 'name', value: 'id' }}
-          optionFilterProp={'name'}
-          optionLabelProp={'name'}
-          showSearch={true}
-          options={subcategories.map(
-            (subcategory: { id: string | number; name: string }) => ({
-              label: subcategory.name,
-              value: subcategory.id,
-            })
-          )}
+          options={categoryOptionQuery.data}
+          loading={categoryOptionQuery.isLoading}
         />
       </Form.Item>
 

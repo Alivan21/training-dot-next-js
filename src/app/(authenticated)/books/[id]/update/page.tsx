@@ -17,7 +17,7 @@ const UpdateBookPage = () => {
   const bookId = typeof params.id === 'string' ? params.id : '';
 
   const bookQuery = useBookQuery(bookId);
-  console.log(bookQuery.data);
+
   const updateBookMutation = useUpdateBookMutation(bookId);
 
   const handleOnFinish = (data: BookFormData) =>
